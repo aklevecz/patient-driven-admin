@@ -6,13 +6,13 @@ export default function Surveys({ doc }) {
   useFirestoreConnect({
     collection: "patients",
     doc,
-    subcollections: [{ collection: "surveys" }],
-    storeAs: `surveys-${doc}`,
+    subcollections: [{ collection: "symptomReports" }],
+    storeAs: `checklists-${doc}`,
   });
   const surveys = useSelector(
-    (state) => state.firestore.ordered[`surveys-${doc}`]
+    (state) => state.firestore.ordered[`checklists-${doc}`]
   );
-  console.log(surveys);
+
   if (!surveys) return <div>loading</div>;
   if (surveys.length === 0) return <div>no surveys</div>;
   return (
